@@ -168,14 +168,11 @@ if (isset($_GET["updatTask"])) {
 <body>
     <div id="app">
         <div class="welcome">BLOG ARTICLES</div>
-        <h1>ARTICLES</h1>
         <div class="todolist">
             <div class="form">
                 <form action="index.php" method="POST" enctype="multipart/form-data">
                     <div class="first-line">
-                        <input type="text" name="title" id="title" placeholder="title"
-                            value="<?php echo isset($fileListToUpdat) && !empty($fileListToUpdat) ? $fileListToUpdat[$resultUpdat]["title"] : null; ?>"
-                            required>
+                        <input type="text" name="title" id="title" placeholder="title" value="<?php echo isset($fileListToUpdat) && !empty($fileListToUpdat) ? $fileListToUpdat[$resultUpdat]["title"] : null; ?>" required>
                     </div>
                     <div class="error error-title">
                         <?php
@@ -183,8 +180,7 @@ if (isset($_GET["updatTask"])) {
                         ?>
                     </div>
                     <div class="second-line">
-                        <textarea name="article" id="article" placeholder="article"
-                            required><?php echo isset($fileListToUpdat) && !empty($fileListToUpdat) ? $fileListToUpdat[$resultUpdat]["article"] : null; ?></textarea>
+                        <textarea name="article" id="article" placeholder="article" required><?php echo isset($fileListToUpdat) && !empty($fileListToUpdat) ? $fileListToUpdat[$resultUpdat]["article"] : null; ?></textarea>
                     </div>
                     <div class="error error-article">
                         <?php
@@ -201,8 +197,7 @@ if (isset($_GET["updatTask"])) {
                         ?>
                     </div>
                     <div class="forth-line">
-                        <input type="hidden" name="idToUpdat"
-                            <?php echo isset($fileListToUpdat) && !empty($fileListToUpdat) ? 'value=' . $resultUpdat : null; ?>>
+                        <input type="hidden" name="idToUpdat" <?php echo isset($fileListToUpdat) && !empty($fileListToUpdat) ? 'value=' . $resultUpdat : null; ?>>
                         <input type="submit" value="enregistrer" id="submit-task" name="submitTaskForm">
                     </div>
                 </form>
@@ -218,39 +213,39 @@ if (isset($_GET["updatTask"])) {
                     for ($i = 0; $i < count($fileList); $i++) {
                         // var_dump($fileList);
                 ?>
-                <div class="display-list">
-                    <div class="display-image">
-                        <?php echo '<img src="' . $fileList[$i]["imgUrl"] . '" width="50" alt="illustration">'; ?>
-                    </div>
-                    <div class="display-title-article">
-                        <div class="display-title">
-                            <?php echo  $fileList[$i]["title"] . ' ( <em>Publié le ' . $fileList[$i]["datePub"] . ')</em>'; ?>
-                        </div>
-                        <div class="display-article">
-                            <?php
+                        <div class="display-list">
+                            <div class="display-image">
+                                <?php echo '<img src="' . $fileList[$i]["imgUrl"] . '" width="50" alt="illustration">'; ?>
+                            </div>
+                            <div class="display-title-article">
+                                <div class="display-title">
+                                    <?php echo  $fileList[$i]["title"] . ' ( <em>Publié le ' . $fileList[$i]["datePub"] . ')</em>'; ?>
+                                </div>
+                                <div class="display-article">
+                                    <?php
                                     $restArticle = substr($fileList[$i]["article"], 0, 300);
                                     echo $restArticle . '  <form action="articlesPage.php" method="GET">
                                     <input type="hidden" name="idToDisplay" id="idToDisplay" value="' . $i . '">
                             <input type="submit" id="submitToDysplay" value="lire la suite">
                             </form>';
                                     ?>
+                                </div>
+                            </div>
+                            <div class="display-manage-bt">
+                                <div class="updat-list">
+                                    <form action="index.php" method="GET">
+                                        <input type="hidden" name="updatTask" value="<?php echo $i; ?>">
+                                        <input type="submit" value="updat">
+                                    </form>
+                                </div>
+                                <div class="delete-list">
+                                    <form action="index.php" method="GET">
+                                        <input type="hidden" name="deteleTask" value="<?php echo $i; ?>">
+                                        <input type="submit" value="delete">
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="display-manage-bt">
-                        <div class="updat-list">
-                            <form action="index.php" method="GET">
-                                <input type="hidden" name="updatTask" value="<?php echo $i; ?>">
-                                <input type="submit" value="updat">
-                            </form>
-                        </div>
-                        <div class="delete-list">
-                            <form action="index.php" method="GET">
-                                <input type="hidden" name="deteleTask" value="<?php echo $i; ?>">
-                                <input type="submit" value="delete">
-                            </form>
-                        </div>
-                    </div>
-                </div>
                 <?php
 
                     }
